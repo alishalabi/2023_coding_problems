@@ -128,3 +128,89 @@ class LinkedList:
 
 
 ##############
+
+# Practice DFS (matrix)
+
+sample_dfs_grid = [
+    ["1", "1", "0", "0", "0"],
+    ["1", "0", "0", "0", "0"],
+    ["0", "0", "1", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["1", "0", "1", "1", "1"]
+] # Should have 4 island
+
+"""
+Pseudo code:
+
+def _dfs(grid, col, row):
+    set first item to "seen", in this case turn to "0"
+    get all directions we can traverse
+    iterate all directions
+    ensure each direction is on grid
+    if cell is "1", run dfs on that cell (recursion)
+
+
+
+def find_islands(grid):
+    instantiate islands
+    check grid at each row column
+    if is "1", increment islands, dfs on that cell
+    after checking all cells once, return islands
+
+"""
+
+
+def _dfs(grid, row, column):
+    grid[row][column] = "0"
+    directions = [(row + 1, column), (row - 1, column), (row, column + 1), (row, column - 1)]
+    for r, c in directions:
+        if r >= 0 and r < len(grid) and c >= 0 and c < len(grid[row]) and grid[r][c] == "1":
+            _dfs(grid, r, c)
+
+
+def find_islands(grid):
+    islands = 0
+    for r in range(len(grid)):
+        for c in range(len(grid[r])):
+            if grid[r][c] == "1":
+                _dfs(grid, r, c)
+                islands += 1
+
+    print(islands)
+
+# find_islands(sample_dfs_grid)
+
+##############
+
+# Practice missing item in array
+
+array1 = ["a", "b", "c", "d"]
+array2 = ["b", "a", "d"]
+
+def find_missing(array1, array2):
+    long_arr = None
+    short_arr = None
+    reference = set()
+    if len(array1) < len(array2):
+        long_arr = array1
+        short_arr = array2
+    else:
+        long_arr = array2
+        short_arr = array1
+    for item in long_arr:
+        # Check if in reference if not unique
+        reference.add(item)
+
+    for item in short_arr:
+        print(item)
+        if item not in reference:
+            return item
+
+# print(find_missing(array1, array2))
+
+
+
+##############
+
+
+##############
