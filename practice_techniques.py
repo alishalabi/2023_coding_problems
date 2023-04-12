@@ -117,7 +117,8 @@ class LinkedList:
         self.head = previous
         self.print_LL()
 
-#
+
+
 # LL = LinkedList()
 # LL.add_node("a")
 # LL.add_node("b")
@@ -184,8 +185,7 @@ def find_islands(grid):
 
 # Practice missing item in array
 
-array1 = ["a", "b", "c", "d"]
-array2 = ["b", "a", "d"]
+
 
 def find_missing(array1, array2):
     long_arr = None
@@ -206,11 +206,61 @@ def find_missing(array1, array2):
         if item not in reference:
             return item
 
+# array1 = ["a", "b", "c", "d"]
+# array2 = ["b", "a", "d"]
 # print(find_missing(array1, array2))
-
 
 
 ##############
 
+# Practice word frequency in string
+
+def word_freqency(string):
+    arr = string.lower().split(" ")
+    output = {}
+    for word in arr:
+        if word in output:
+            output[word] = output[word] + 1
+        else:
+            output[word] = 1
+    print(output)
+
+# sample_string = "The dog kicked the ball to the other dog"
+# word_freqency(sample_string)
+
+
+##############
+
+# Practice finding index anagrams in array
+
+def find_anagram_indexes(array):
+    seen = {}
+    for word in array:
+        sorted_word = "".join(sorted(word))
+        if sorted_word not in seen:
+            seen[sorted_word] = []
+            seen[sorted_word].append(array.index(word))
+        else:
+            seen[sorted_word].append(array.index(word))
+    print(seen)
+
+
+# sample_anagrams = ["cat", "dog", "god", "tca", "act"]
+# find_anagram_indexes(sample_anagrams)
+
+##############
+
+# Practice rotating string
+
+def rotate_string(string, target):
+    new_string = string+string
+    new_left = target
+    new_right = len(string) + target
+    print(new_string[new_left:new_right])
+
+
+sample_rotation = "ABCDEFG"
+sample_rotation_target = 2
+rotate_string(sample_rotation, sample_rotation_target)
 
 ##############
